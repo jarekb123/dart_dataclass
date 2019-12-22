@@ -78,6 +78,8 @@ class Car extends _Car {
   final String name;
   final String manufacturer;
   final double price;
+
+  Car({this.name, this.manufacturer, this.price});
 }
 ```
 
