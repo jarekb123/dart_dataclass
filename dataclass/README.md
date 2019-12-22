@@ -52,7 +52,7 @@ abstract class _Car {
         this.price == other.price;
   }
 
-  int hashCode() {
+  int get hashCode {
     return mapPropsToHashCode([name, manufacturer, price]);
   }
 

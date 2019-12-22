@@ -18,7 +18,7 @@ abstract class _Data {
     return true && this.id == other.id && this.name == other.name;
   }
 
-  int hashCode() {
+  int get hashCode {
     return mapPropsToHashCode([id, name]);
   }
 
@@ -50,7 +50,7 @@ abstract class _Car {
         this.price == other.price;
   }
 
-  int hashCode() {
+  int get hashCode {
     return mapPropsToHashCode([name, manufacturer, price]);
   }
 

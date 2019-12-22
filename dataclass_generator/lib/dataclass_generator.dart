@@ -90,6 +90,7 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
 
     MethodBuilder mb = MethodBuilder()
       ..name = 'hashCode'
+      ..type = MethodType.getter
       ..returns = refer('int')
       ..body = Code(
         '''
