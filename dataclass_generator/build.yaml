@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      dataclass_generator|dataclass:
+        enabled: true
+
+builders:
+  dataclass:
+    target: ":dataclass_generator"
+    import: "package:dataclass_generator/dataclass_generator.dart"
+    builder_factories: ["dataClass"]
+    build_extensions: {".dart": [".g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]

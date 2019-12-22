@@ -1,0 +1,22 @@
+name: dataclass_generator
+description: Generator for dataclass package. It generates base classes for annotated classes.
+version: 0.1.0
+author: Jaroslaw Butajlo <jaroslaw.butajlo@gmail.com>
+homepage: 
+
+environment:
+  sdk: ">=2.0.0 <3.0.0"
+
+dependencies:
+  dataclass:
+    path: ../dataclass/
+  build: 
+  source_gen: 
+  code_builder: 
+  dart_style: 
+  analyzer: ^0.39.2+1
+
+dev_dependencies:
+  build_test:
+  build_runner:
+  test:

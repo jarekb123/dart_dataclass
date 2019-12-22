@@ -1,0 +1,13 @@
+name: dataclass
+description: A new Flutter package project.
+version: 0.1.0
+author: Jaroslaw Butajlo <jaroslaw.butajlo@gmail.com>
+homepage:
+
+environment:
+  sdk: ">=2.0.0 <3.0.0"
+
+dependencies:
+
+dev_dependencies:
+
