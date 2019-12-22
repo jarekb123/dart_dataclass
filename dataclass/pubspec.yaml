@@ -1,8 +1,8 @@
 name: dataclass
-description: A new Flutter package project.
+description: DataClass annotation for dataclass_generator. Used for generating base class with equals, hashCode, toString, copyWith methods.
 version: 0.1.0
 author: Jaroslaw Butajlo <jaroslaw.butajlo@gmail.com>
-homepage:
+homepage: https://github.com/jarekb123/dart_dataclass
 
 environment:
   sdk: ">=2.0.0 <3.0.0"
@@ -10,4 +10,3 @@ environment:
 dependencies:
 
 dev_dependencies:
-

@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
+## [0.1.0] 
 
-* TODO: Describe initial release.
+* `@DataClass()` annotation used by `dataclass_generator`
+* `mapPropsToHashCode` from `equatable` package used by `hashCode` getter

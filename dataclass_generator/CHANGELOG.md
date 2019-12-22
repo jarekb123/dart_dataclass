@@ -1,3 +1,2 @@
-## [0.0.1] - TODO: Add release date.
-
-* TODO: Describe initial release.
+## [0.1.0] - 2019/12/22
+* generating base class with equals, hashCode, toString, copyWith methods.
