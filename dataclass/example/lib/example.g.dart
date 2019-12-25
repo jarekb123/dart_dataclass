@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'data.dart';
+part of 'example.dart';
 
 // **************************************************************************
 // DataClassGenerator
 // **************************************************************************
 
-abstract class _Data {
-  const _Data();
+abstract class _$Data {
+  const _$Data();
 
   int get id;
   String get name;
@@ -34,8 +34,8 @@ abstract class _Data {
   }
 }
 
-abstract class _Car {
-  const _Car();
+abstract class _$Car {
+  const _$Car();
 
   String get name;
   String get manufacturer;

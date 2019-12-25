@@ -47,8 +47,8 @@ Run `pub run build_runner build`
 #### Generated file
 
 ```dart
-abstract class _Car {
-  const _Car();
+abstract class _$Car {
+  const _$Car();
 
   String get name;
   String get manufacturer;
@@ -85,7 +85,7 @@ abstract class _Car {
 
 ```dart
 @DataClass()
-class Car extends _Car {
+class Car extends _$Car {
   final String name;
   final String manufacturer;
   final double price;
@@ -104,3 +104,7 @@ As the docs says that:
 
 - Declares a member with the same basename as a member declared by Object (==, hashCode, toString, noSuchMethod, runtimeType). This applies to both static and instance member declarations.
   </i>
+
+2. May I use generics?
+
+Yes.

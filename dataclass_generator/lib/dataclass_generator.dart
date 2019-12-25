@@ -28,7 +28,8 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
             'The @DataClass class must have unnamed (default) constructor');
       }
       if (!element.unnamedConstructor.parameters
-          .any((param) => param.isNamed)) {
+              .any((param) => param.isNamed) &&
+          !element.unnamedConstructor.parameters.isNotEmpty) {
         throw InvalidGenerationSourceError(
             'The @DataClass class constructor should have named params only');
       }
@@ -42,7 +43,7 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
       _isSourceValid(element);
 
       final equalsMethod = _equalsMethod(element.name, element.fields);
-      final copyWithMethod = _copyWithMethod(element.name, element.fields);
+      final copyWithMethod = _copyWithMethod(element, element.fields);
       final hashCodeMethod = _hashCodeMethod(element.fields);
       final toStringMethod = _toStringMethod(element.name, element.fields);
 
@@ -56,8 +57,10 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
       final constConstructor = (ConstructorBuilder()..constant = true).build();
 
       final dataClass = ClassBuilder()
-        ..name = '_${element.name}'
+        ..name = '_\$${element.name}'
         ..constructors.add(constConstructor)
+        ..types.addAll(
+            element.typeParameters.map((typeParam) => refer(typeParam.name)))
         ..methods.addAll(getters)
         ..methods.add(equalsMethod)
         ..methods.add(hashCodeMethod)
@@ -101,7 +104,7 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
     return mb.build();
   }
 
-  Method _copyWithMethod(String className, List<FieldElement> fields) {
+  Method _copyWithMethod(ClassElement clazz, List<FieldElement> fields) {
     final params = fields
         .map((field) => ParameterBuilder()
           ..name = field.name
@@ -112,9 +115,8 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
     final mb = MethodBuilder()
       ..name = 'copyWith'
       ..optionalParameters.addAll(params)
-      ..returns = refer(className)
-      ..body =
-          Code(copyToMethodBody(className, fields.map((field) => field.name)));
+      ..returns = refer(clazz.name)
+      ..body = Code(copyToMethodBody(clazz, fields.map((field) => field.name)));
 
     return mb.build();
   }
@@ -142,13 +144,17 @@ String equalsBody(String className, Iterable<String> fields) {
 ''';
 }
 
-String copyToMethodBody(String className, Iterable<String> fields) {
+String copyToMethodBody(ClassElement clazz, Iterable<String> fields) {
   final paramsInput = fields.fold(
     "",
     (r, field) => "$r ${field}: ${field} ?? this.${field},",
   );
 
-  return '''return $className($paramsInput);''';
+  final typeParameters = clazz.typeParameters.isEmpty
+      ? ''
+      : '<' + clazz.typeParameters.map((type) => type.name).join(',') + '>';
+
+  return '''return ${clazz.name}$typeParameters($paramsInput);''';
 }
 
 String toStringBody(String className, Iterable<String> fields) {

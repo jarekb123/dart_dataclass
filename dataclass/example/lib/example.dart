@@ -1,9 +1,9 @@
 import 'package:dataclass/dataclass.dart';
 
-part 'data.g.dart';
+part 'example.g.dart';
 
 @DataClass()
-class Data extends _Data {
+class Data extends _$Data {
   final int id;
   final String name;
 
@@ -11,7 +11,7 @@ class Data extends _Data {
 }
 
 @DataClass()
-class Car extends _Car {
+class Car extends _$Car {
   final String name;
   final String manufacturer;
   final double price;
