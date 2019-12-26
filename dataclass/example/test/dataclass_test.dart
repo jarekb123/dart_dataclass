@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:dataclass_example/data.dart';
+import 'package:dataclass_example/example.dart';
 
 void main() {
   final car1 = Car(name: 'Corolla', manufacturer: 'Toyota', price: 500.0);

@@ -1,3 +1,6 @@
+## [0.2.1] - 2019/12/26
+* **FIX** not generating base classes for @DataClass classes with no fields
+
 ## [0.2.0] - 2019/12/25
 * enable usage of generic types, eg. `Product<T>`
 * **BREAKING CHANGE**: change generated class name from `_Class` to `_$Class`

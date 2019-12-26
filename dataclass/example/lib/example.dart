@@ -18,3 +18,6 @@ class Car extends _$Car {
 
   Car({this.name, this.manufacturer, this.price});
 }
+
+@DataClass()
+class NoFieldsClass extends _$NoFieldsClass {}

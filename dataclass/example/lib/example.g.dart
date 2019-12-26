@@ -66,3 +66,26 @@ abstract class _$Car {
     );
   }
 }
+
+abstract class _$NoFieldsClass {
+  const _$NoFieldsClass();
+
+  bool operator ==(other) {
+    if (identical(this, other)) return true;
+    if (other is! NoFieldsClass) return false;
+
+    return true;
+  }
+
+  int get hashCode {
+    return mapPropsToHashCode([]);
+  }
+
+  String toString() {
+    return 'NoFieldsClass <>';
+  }
+
+  NoFieldsClass copyWith() {
+    return NoFieldsClass();
+  }
+}

@@ -25,14 +25,16 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
     void _isSourceValid(ClassElement element) {
       if (element.unnamedConstructor == null) {
         throw InvalidGenerationSourceError(
-            'The @DataClass class must have unnamed (default) constructor');
+            'The ${element.name} @DataClass must have unnamed (default) constructor');
       }
-      if (!element.unnamedConstructor.parameters
-              .any((param) => param.isNamed) &&
-          !element.unnamedConstructor.parameters.isNotEmpty) {
-        throw InvalidGenerationSourceError(
-            'The @DataClass class constructor should have named params only');
+      if (element.unnamedConstructor.parameters.isNotEmpty) {
+        if (!element.unnamedConstructor.parameters
+            .any((param) => param.isNamed)) {
+          throw InvalidGenerationSourceError(
+              'The ${element.name} @DataClass constructor should have named params only');
+        }
       }
+
       if (element.fields.any((field) => !field.isFinal)) {
         throw InvalidGenerationSourceError(
             '@DataClass should have final fields only');
