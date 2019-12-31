@@ -52,7 +52,7 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
       final getters = element.fields
           .map((field) => MethodBuilder()
             ..name = field.name
-            ..returns = refer(field.type.name)
+            ..returns = refer(field.type.displayName)
             ..type = MethodType.getter)
           .map((mb) => mb.build());
 
