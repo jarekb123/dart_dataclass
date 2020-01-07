@@ -44,15 +44,16 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
     if (element is ClassElement && !element.isAbstract) {
       _isSourceValid(element);
 
-      final equalsMethod = _equalsMethod(element.name, element.fields);
+      final equalsMethod = _equalsMethod(element.displayName, element.fields);
       final copyWithMethod = _copyWithMethod(element, element.fields);
       final hashCodeMethod = _hashCodeMethod(element.fields);
-      final toStringMethod = _toStringMethod(element.name, element.fields);
+      final toStringMethod =
+          _toStringMethod(element.displayName, element.fields);
 
       final getters = element.fields
           .map((field) => MethodBuilder()
-            ..name = field.name
-            ..returns = refer(field.type.name)
+            ..name = field.displayName
+            ..returns = refer(field.type.displayName)
             ..type = MethodType.getter)
           .map((mb) => mb.build());
 
@@ -61,8 +62,8 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
       final dataClass = ClassBuilder()
         ..name = '_\$${element.name}'
         ..constructors.add(constConstructor)
-        ..types.addAll(
-            element.typeParameters.map((typeParam) => refer(typeParam.name)))
+        ..types.addAll(element.typeParameters
+            .map((typeParam) => refer(typeParam.displayName)))
         ..methods.addAll(getters)
         ..methods.add(equalsMethod)
         ..methods.add(hashCodeMethod)
@@ -84,7 +85,7 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
       ..requiredParameters.add((ParameterBuilder()..name = 'other').build())
       ..returns = refer('bool')
       ..body = Code(
-        equalsBody(className, fields.map((element) => element.name)),
+        equalsBody(className, fields.map((element) => element.displayName)),
       );
 
     return mb.build();
@@ -110,7 +111,7 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
     final params = fields
         .map((field) => ParameterBuilder()
           ..name = field.name
-          ..type = refer(field.type.name)
+          ..type = refer(field.type.displayName)
           ..named = true)
         .map((paramBuilder) => paramBuilder.build());
 
@@ -118,7 +119,8 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
       ..name = 'copyWith'
       ..optionalParameters.addAll(params)
       ..returns = refer(clazz.name)
-      ..body = Code(copyToMethodBody(clazz, fields.map((field) => field.name)));
+      ..body = Code(
+          copyToMethodBody(clazz, fields.map((field) => field.displayName)));
 
     return mb.build();
   }
@@ -127,7 +129,8 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
     final mb = MethodBuilder()
       ..name = 'toString'
       ..returns = refer('String')
-      ..body = Code(toStringBody(className, fields.map((field) => field.name)));
+      ..body = Code(
+          toStringBody(className, fields.map((field) => field.displayName)));
 
     return mb.build();
   }

@@ -1,3 +1,6 @@
+## [0.2.2] - 2019/12/31
+* **FIX** not generating full delcation of colletion. eg. `List get field` instead `List<myType> get field`
+
 ## [0.2.1] - 2019/12/26
 * **FIX** not generating base classes for @DataClass classes with no fields
 
