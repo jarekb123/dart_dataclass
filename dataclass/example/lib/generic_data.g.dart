@@ -33,3 +33,29 @@ abstract class _$Product<T> {
     );
   }
 }
+
+abstract class _$Category<T> {
+  const _$Category();
+
+  List<Product<T>> get products;
+  bool operator ==(other) {
+    if (identical(this, other)) return true;
+    if (other is! Category) return false;
+
+    return true && this.products == other.products;
+  }
+
+  int get hashCode {
+    return mapPropsToHashCode([products]);
+  }
+
+  String toString() {
+    return 'Category <\'products\': ${this.products},>';
+  }
+
+  Category copyWith({List<Product<T>> products}) {
+    return Category<T>(
+      products: products ?? this.products,
+    );
+  }
+}
