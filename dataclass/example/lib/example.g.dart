@@ -89,3 +89,29 @@ abstract class _$NoFieldsClass {
     return NoFieldsClass();
   }
 }
+
+abstract class _$Manufacturer {
+  const _$Manufacturer();
+
+  List<Car> get cars;
+  bool operator ==(other) {
+    if (identical(this, other)) return true;
+    if (other is! Manufacturer) return false;
+
+    return true && this.cars == other.cars;
+  }
+
+  int get hashCode {
+    return mapPropsToHashCode([cars]);
+  }
+
+  String toString() {
+    return 'Manufacturer <\'cars\': ${this.cars},>';
+  }
+
+  Manufacturer copyWith({List<Car> cars}) {
+    return Manufacturer(
+      cars: cars ?? this.cars,
+    );
+  }
+}

@@ -1,3 +1,6 @@
+## [0.3.0] - 2019/01/19
+* Add @Collection() annotation to use DeepCollectionEquality from `collection` package to compare collections
+
 ## [0.2.2] - 2019/12/31
 * **FIX** not generating full delcation of colletion. eg. `List get field` instead `List<myType> get field`
 

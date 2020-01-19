@@ -2,7 +2,7 @@ import 'package:dataclass/dataclass.dart';
 
 part 'example.g.dart';
 
-@DataClass()
+@dataClass
 class Data extends _$Data {
   final int id;
   final String name;
@@ -10,7 +10,7 @@ class Data extends _$Data {
   const Data({this.id, this.name});
 }
 
-@DataClass()
+@dataClass
 class Car extends _$Car {
   final String name;
   final String manufacturer;
@@ -19,5 +19,13 @@ class Car extends _$Car {
   Car({this.name, this.manufacturer, this.price});
 }
 
-@DataClass()
+@dataClass
 class NoFieldsClass extends _$NoFieldsClass {}
+
+@dataClass
+class Manufacturer extends _$Manufacturer {
+  @Collection()
+  final List<Car> cars;
+
+  Manufacturer({this.cars});
+}

@@ -85,10 +85,37 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
       ..requiredParameters.add((ParameterBuilder()..name = 'other').build())
       ..returns = refer('bool')
       ..body = Code(
-        equalsBody(className, fields.map((element) => element.displayName)),
+        equalsBody(
+          className,
+          Map.fromIterable(fields,
+              key: (element) => element.displayName,
+              value: (element) => _hasDeepCollectionEquality(element)),
+        ),
       );
 
+    fields.map(
+      (element) => element.metadata.map(
+        (annotation) => annotation
+            .computeConstantValue()
+            .getField('deepEquality')
+            .toBoolValue(),
+      ),
+    );
+
     return mb.build();
+  }
+
+  bool _hasDeepCollectionEquality(FieldElement fieldElement) {
+    final collectionAnnotation =
+        TypeChecker.fromRuntime(Collection).firstAnnotationOf(fieldElement);
+
+    print('$fieldElement has @Collection: ${collectionAnnotation != null}');
+
+    if (collectionAnnotation == null)
+      return false;
+    else {
+      return collectionAnnotation.getField('deepEquality').toBoolValue();
+    }
   }
 
   Method _hashCodeMethod(List<FieldElement> fields) {
@@ -136,9 +163,14 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
   }
 }
 
-String equalsBody(String className, Iterable<String> fields) {
-  final fieldEquals = fields.fold<String>('true', (value, element) {
-    return '$value && this.$element == other.$element';
+String equalsBody(String className, Map<String, bool> fields) {
+  final fieldEquals = fields.entries.fold<String>('true', (value, element) {
+    final hasDeepCollectionEquality = element.value;
+    if (hasDeepCollectionEquality) {
+      return '$value && DeepCollectionEquality().equals(this.${element.key},other.${element.key})';
+    } else {
+      return '$value && this.${element.key} == other.${element.key}';
+    }
   });
 
   return '''

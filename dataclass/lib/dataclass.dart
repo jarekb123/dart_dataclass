@@ -1,7 +1,22 @@
 library dataclass;
 
+export 'package:collection/collection.dart';
+
+/// Short-hand annotation for `@DataClass()`.
+/// You can use `@dataClass` instead of `@DataClass()`
+const dataClass = DataClass();
+
 class DataClass {
+  /// DataClass annotation used for dataclass code generation
   const DataClass();
+}
+
+class Collection {
+  final bool deepEquality;
+
+  /// If `deepEquality` is set to true.
+  /// The generated `operator==`  uses DeepCollectionEquality from collection package
+  const Collection({this.deepEquality = true});
 }
 
 // Copied from equatable packages

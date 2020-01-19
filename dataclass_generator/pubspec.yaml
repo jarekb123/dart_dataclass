@@ -1,6 +1,6 @@
 name: dataclass_generator
 description: DataClass annotation for dataclass_generator. Used for generating base class with equals, hashCode, toString, copyWith methods.
-version: 0.2.2
+version: 0.3.0
 author: Jaroslaw Butajlo <jaroslaw.butajlo@gmail.com>
 homepage: https://github.com/jarekb123/dart_dataclass
 
@@ -8,8 +8,8 @@ environment:
   sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
-  dataclass: ^0.2.0
-  # dataclass:
+  dataclass: ^0.3.0
+  # dataclass: 
     # path: ../dataclass/
   build: ">=1.2.0 <1.3.0"
   source_gen: ">=0.9.0 <0.10.0"

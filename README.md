@@ -22,7 +22,7 @@ dev_dependencies:
 ```
 
 
-### 1. Annotate your class with @DataClass
+### 1. Annotate your class with @dataClass
 
 The class should:
 
@@ -30,7 +30,7 @@ The class should:
 - unnamed constructor with named parameters for all fields
 
 ```dart
-@DataClass()
+@dataClass
 class Car {
   final String name;
   final String manufacturer;
@@ -84,13 +84,25 @@ abstract class _$Car {
 ### 3. Extend class with generated base class
 
 ```dart
-@DataClass()
+@dataClass
 class Car extends _$Car {
   final String name;
   final String manufacturer;
   final double price;
 
   Car({this.name, this.manufacturer, this.price});
+}
+```
+
+#### Collection equality
+```dart
+
+@dataClass
+class Car extends _$Car {
+  @Collection(deepEquality: true) // Short-hand: @Collection()
+  final List<String> parts;
+
+  const Car({this.parts});
 }
 ```
 
