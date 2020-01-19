@@ -1,5 +1,9 @@
+## [0.3.0+1]
+* Copy README from repository to `dataclass` directory
+
 ## [0.3.0] - 2019/01/19
 * Add @Collection() annotation to use DeepCollectionEquality from `collection` package to compare collections
+* Add `@dataClass` shorthand for `@DataClass()`
 
 ## [0.2.0] - 2019/12/25
 * enable usage of generic types, eg. `Product<T>`
