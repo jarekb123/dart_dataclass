@@ -109,8 +109,6 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
     final collectionAnnotation =
         TypeChecker.fromRuntime(Collection).firstAnnotationOf(fieldElement);
 
-    print('$fieldElement has @Collection: ${collectionAnnotation != null}');
-
     if (collectionAnnotation == null)
       return false;
     else {
