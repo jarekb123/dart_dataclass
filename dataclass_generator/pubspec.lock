@@ -165,10 +165,10 @@ packages:
   dataclass:
     dependency: "direct main"
     description:
-      path: "../dataclass"
-      relative: true
-    source: path
-    version: "0.2.0"
+      name: dataclass
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0+1"
   fixnum:
     dependency: transitive
     description:

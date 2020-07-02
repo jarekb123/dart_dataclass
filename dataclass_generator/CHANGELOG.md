@@ -1,3 +1,6 @@
+## [0.4.0]
+* Do not getter-only fields in generating data class methods -  thanks to [@mrbech](https://github.com/mrbech)
+
 ## [0.3.0+2]
 * Remove debug prints
 
@@ -9,7 +12,7 @@
 * Add `@dataClass` shorthand for `@DataClass()`
 
 ## [0.2.2] - 2019/12/31
-* **FIX** not generating full delcation of colletion. eg. `List get field` instead `List<myType> get field`
+* **FIX** not generating full declaration of collection. eg. `List get field` instead `List<myType> get field`
 
 ## [0.2.1] - 2019/12/26
 * **FIX** not generating base classes for @DataClass classes with no fields
