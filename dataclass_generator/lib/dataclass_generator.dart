@@ -44,13 +44,14 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
     if (element is ClassElement && !element.isAbstract) {
       _isSourceValid(element);
 
-      final equalsMethod = _equalsMethod(element.displayName, element.fields);
-      final copyWithMethod = _copyWithMethod(element, element.fields);
-      final hashCodeMethod = _hashCodeMethod(element.fields);
-      final toStringMethod =
-          _toStringMethod(element.displayName, element.fields);
+      final fields = element.fields.where((f) => !isGetter(f)).toList();
 
-      final getters = element.fields
+      final equalsMethod = _equalsMethod(element.displayName, fields);
+      final copyWithMethod = _copyWithMethod(element, fields);
+      final hashCodeMethod = _hashCodeMethod(fields);
+      final toStringMethod = _toStringMethod(element.displayName, fields);
+
+      final getters = fields
           .map((field) => MethodBuilder()
             ..name = field.displayName
             ..returns = refer(field.type.displayName)
@@ -197,4 +198,8 @@ String toStringBody(String className, Iterable<String> fields) {
       fields.fold('', (r, field) => r + '\\\'$field\\\': \${this.$field},');
 
   return "return '$className <$fieldsToString>';";
+}
+
+bool isGetter(FieldElement f) {
+  return f.getter != null && !f.getter.isSynthetic;
 }
