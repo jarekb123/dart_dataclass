@@ -11,7 +11,7 @@ dependencies:
   dataclass: ">=0.3.0 <0.4.0"
   # dataclass: 
     # path: ../dataclass/
-  build: ">=1.2.0 <1.3.0"
+  build: ">=1.3.0 <1.4.0"
   source_gen: ">=0.9.0 <0.10.0"
   code_builder: ">=3.2.0 <3.3.0"
   dart_style: ">=1.3.0 <1.4.0"
