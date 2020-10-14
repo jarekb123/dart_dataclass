@@ -1,4 +1,5 @@
 # dataclass
+
 [![License](https://img.shields.io/github/license/jarekb123/dart_dataclass?style=flat-square&logo=github)](https://github.com/jarekb123/dart_dataclass/blob/master/LICENSE)  [![Github Stars](https://img.shields.io/github/stars/jarekb123/dart_dataclass?style=flat-square&logo=github)](https://github.com/jarekb123/dart_dataclass)
 
 ## Packages Versions on PUB

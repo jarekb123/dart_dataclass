@@ -54,7 +54,7 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
       final getters = fields
           .map((field) => MethodBuilder()
             ..name = field.displayName
-            ..returns = refer(field.type.displayName)
+            ..returns = refer(field.type.getDisplayString(withNullability: false))
             ..type = MethodType.getter)
           .map((mb) => mb.build());
 
@@ -137,7 +137,7 @@ class DataClassGenerator extends GeneratorForAnnotation<DataClass> {
     final params = fields
         .map((field) => ParameterBuilder()
           ..name = field.name
-          ..type = refer(field.type.displayName)
+          ..type = refer(field.type.getDisplayString(withNullability: false))
           ..named = true)
         .map((paramBuilder) => paramBuilder.build());
 
