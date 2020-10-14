@@ -1,3 +1,6 @@
+## [0.5.0]
+* Update dependencies
+
 ## [0.4.0]
 * Do not getter-only fields in generating data class methods -  thanks to [@mrbech](https://github.com/mrbech)
 

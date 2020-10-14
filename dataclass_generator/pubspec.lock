@@ -175,7 +175,7 @@ packages:
       name: dataclass
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0+1"
+    version: "0.5.0"
   fixnum:
     dependency: transitive
     description:
