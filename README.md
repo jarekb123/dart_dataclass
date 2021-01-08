@@ -1,3 +1,6 @@
+# DEPRECATED
+This package is no longer mantained. Consider using Freezed package to define your data classes.
+
 # dataclass
 
 [![License](https://img.shields.io/github/license/jarekb123/dart_dataclass?style=flat-square&logo=github)](https://github.com/jarekb123/dart_dataclass/blob/master/LICENSE)  [![Github Stars](https://img.shields.io/github/stars/jarekb123/dart_dataclass?style=flat-square&logo=github)](https://github.com/jarekb123/dart_dataclass)
